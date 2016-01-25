@@ -19,9 +19,10 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' $PG_MAJ
 
 RUN apt-get update && apt-get install -y \
         		libpq-dev=$PG_VERSION \
-       libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmcrypt-dev \
-        libpng12-dev \
-            && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-            && docker-php-ext-install -j$(nproc) pdo_pgsql opcache json mbstring mcrypt
+		        libfreetype6-dev \
+		        libjpeg62-turbo-dev \
+		        libmcrypt-dev \
+		        libpng12-dev \
+	            && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	            && docker-php-ext-install -j$(nproc) pdo_pgsql opcache json mbstring mcrypt
+	            && rm -r /var/lib/apt/lists/*
